@@ -1,0 +1,13 @@
+# env files
+*.env
+
+# terraria files
+terraria-server/worlds/*
+!terraria-server/worlds/worlds-are-saved-here.txt
+terraria-server/config/*
+!terraria-server/config/config_goes_here.txt
+terraria-server/logs/*
+!terraria-server/logs/logs-go-here.txt
+
+# ngrok config
+ngrok/ngrok.yml

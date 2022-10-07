@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+
+  terraria:
+    build:
+      context: ./terraria-server
+      args:
+        DL_VERSION: 1445
+    restart: on-failure
+    stdin_open: true
+    tty: true
+    volumes:
+    - ".\\terraria-server\\worlds:/root/.local/share/Terraria/Worlds"
+    - ".\\terraria-server\\logs:/terraria-server/logs"
+    - ".\\terraria-server\\config:/config"
+
+  ngrok:
+    image: wernight/ngrok:latest
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    ports:
+    - "4040:4040"
+    env_file: ./ngrok/ngrok.env
+
+  ip-notifier:
+    depends_on: 
+    - ngrok
+    build:
+      context: ./ddns
+    env_file: ./ddns/ddns.env

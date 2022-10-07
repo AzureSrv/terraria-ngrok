@@ -1,0 +1,1 @@
+serverconfig.txt should be in this folder. also banlist.txt if you configure that in your server config.
